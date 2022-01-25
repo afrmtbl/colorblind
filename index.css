@@ -1,0 +1,113 @@
+body {
+	position: absolute;
+	display: flex;
+
+	width: 100%;
+	height: 100%;
+
+	justify-content: center;
+	align-items: center;
+
+	margin: 0;
+	padding: 0;
+
+	box-sizing: border-box;
+	background-color: #0a0a0b;
+	font-family: sans-serif;
+
+	color: white;
+}
+
+#game-header {
+	display: flex;
+
+	flex-flow: column nowrap;
+
+	text-align: center;
+	align-items: center;
+
+	font-weight: bold;
+	height: 8rem;
+}
+
+#high-score, #last-score {
+	font-size: 1.1em;
+	margin: 0.2em 0;
+}
+
+#last-score {
+	margin-bottom: 2em;
+}
+
+#score {
+	--circle-size: 70px;
+	--timer-percent: 70%;
+	font-size: 2em;
+	margin-top: 1em;
+	
+	width: var(--circle-size);
+	line-height: var(--circle-size);
+	text-align: center;
+
+	border-radius: 50%;
+
+	background: conic-gradient(#818181 var(--timer-percent), transparent 0);
+	display: none;
+}
+
+#circles {
+	--circle-color: red;
+	position: relative;
+	display: inline-grid;
+	margin: 0 auto;
+
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 10px;
+}
+
+#circles.level2 {
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.circle {
+	--circle-size: 120px;
+	width: var(--circle-size);
+	height: var(--circle-size);
+
+	border-radius: 50%;
+	background-color: var(--circle-color);
+
+	cursor: pointer;
+
+	-webkit-transform: translateZ(0);
+	-webkit-perspective: 1000;
+	-webkit-backface-visibility: hidden;
+}
+
+.bounce-anim {
+	animation: bounce-in 400ms ease;
+}
+
+@media (max-width: 430px) {
+	.circle {
+		--circle-size: 25vw;
+	}
+}
+
+/* https://codepen.io/nelledejones/pen/gOOPWrK */
+@keyframes bounce-in {
+	0% {
+		opacity: 0;
+		transform: scale(.3);
+	}
+	50% {
+		opacity: 1;
+		transform: scale(1.05);
+	}
+	70% { 
+		transform: scale(.9); 
+	}
+	100% { 
+		transform: scale(1); 
+	}
+}
